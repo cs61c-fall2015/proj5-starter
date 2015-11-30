@@ -31,9 +31,6 @@ if __name__ == "__main__":
         try:
             s = time()
             output = method(input_rdd).compute_pagerank(num_iters)
-            e = time()
-            print 'Time elapsed: %.2f min' % ((e - s) / 60.0)
-            print ''
         except:
             print >> sys.stderr, "Something went wrong"
             traceback.print_exc()
@@ -41,6 +38,8 @@ if __name__ == "__main__":
         print "Weight of five nodes:"
         for (node, weight) in output.top(5):
             print "{0} {1}".format(node, weight)
+        e = time()
+        print 'Time elapsed: %.2f min' % ((e - s) / 60.0)
         print ''
     else:
         print >> sys.stderr, "Not enough arguments specified. Must specify the method and input file."
